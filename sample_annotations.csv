@@ -1,0 +1,21 @@
+text,ai_suggestion,final_label
+"I love this product, it is amazing!",Positive,Positive
+"Worst experience ever, very disappointed",Negative,Negative
+"It is okay, not too bad",Neutral,Neutral
+Absolutely fantastic service,Positive,Positive
+I will never buy this again,Negative,Negative
+Pretty decent quality for the price,Neutral,Neutral
+"Totally worth it, happy customer",Positive,Positive
+Very bad build quality,Negative,Negative
+Neutral feelings about this,Neutral,Neutral
+Excellent performance and great value,Positive,Positive
+Not satisfied with the purchase,Neutral,Negative
+It works fine as expected,Neutral,Neutral
+I am extremely happy with this,Positive,Positive
+Terrible customer support,Negative,Negative
+"Average product, nothing special",Neutral,Neutral
+Superb experience overall,Positive,Positive
+I regret buying this,Negative,Negative
+Good but could be better,Neutral,Neutral
+Highly recommended to everyone,Positive,Positive
+Waste of money,Negative,Negative
