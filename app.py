@@ -139,18 +139,29 @@ if uploaded_file is not None:
         result_df = pd.DataFrame(st.session_state.labels)
 
         search = st.text_input("🔍 Search Annotations")
+        
+        selected_label = st.selectbox(
+        "Filter by Label",
+        ["All", "Positive", "Negative", "Neutral"]
+        )
+
+        filtered_df = result_df.copy()
+
+        if selected_label != "All":
+            filtered_df = filtered_df[
+                filtered_df["final_label"] == selected_label
+            ]
 
         if search:
-            filtered_df = result_df[
-                result_df["text"].str.contains(
+            filtered_df = filtered_df[
+                filtered_df["text"].str.contains(
                     search,
                     case=False,
                     na=False
                 )
             ]
-            st.dataframe(filtered_df)
-        else:
-            st.dataframe(result_df)
+
+        st.dataframe(filtered_df)
 
         st.write("### ✏️ Edit Saved Annotations")
 
