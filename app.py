@@ -200,6 +200,25 @@ if uploaded_file is not None:
 
         result_df = pd.DataFrame(st.session_state.labels)
 
+        col1, col2, col3, col4 = st.columns(4)
+
+        col1.metric("Total", len(result_df))
+
+        col2.metric(
+            "Positive",
+            len(result_df[result_df["final_label"] == "Positive"])
+        )
+
+        col3.metric(
+            "Negative",
+            len(result_df[result_df["final_label"] == "Negative"])
+        )
+
+        col4.metric(
+            "Neutral",
+            len(result_df[result_df["final_label"] == "Neutral"])
+        )
+
         st.metric("Total Annotations", len(result_df))
 
         st.bar_chart(
