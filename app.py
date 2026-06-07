@@ -137,7 +137,20 @@ if uploaded_file is not None:
         st.write("## 📦 Exported Annotations")
 
         result_df = pd.DataFrame(st.session_state.labels)
-        st.dataframe(result_df)
+
+        search = st.text_input("🔍 Search Annotations")
+
+        if search:
+            filtered_df = result_df[
+                result_df["text"].str.contains(
+                    search,
+                    case=False,
+                    na=False
+                )
+            ]
+            st.dataframe(filtered_df)
+        else:
+            st.dataframe(result_df)
 
         st.write("### ✏️ Edit Saved Annotations")
 
