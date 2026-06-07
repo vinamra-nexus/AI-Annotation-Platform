@@ -5,6 +5,18 @@ import matplotlib.pyplot as plt
 
 st.title("🧠 AI Data Annotation Tool - PRO MODE")
 
+dark_mode = st.toggle("🌙 Dark Mode")
+
+if dark_mode:
+    st.markdown("""
+    <style>
+    .stApp {
+        background-color: #0E1117;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
 if uploaded_file is not None:
