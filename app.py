@@ -20,13 +20,12 @@ if uploaded_file is not None:
     row = df.iloc[st.session_state.index]
     text = row["text"]
 
-    st.progress(
-    (st.session_state.index + 1) / len(df)
-    )
+    total_records = len(df)
+    completed = len(st.session_state.labels)
 
-    st.write(
-        f"Row {st.session_state.index + 1} of {len(df)}"
-    )
+    st.progress(completed / total_records)
+
+    st.write(f"{completed}/{total_records} records annotated")
 
     # -------------------------
     # 🧠 SIMPLE AI SUGGESTION LOGIC
