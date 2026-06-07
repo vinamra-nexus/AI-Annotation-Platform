@@ -139,7 +139,7 @@ if uploaded_file is not None:
         result_df = pd.DataFrame(st.session_state.labels)
 
         search = st.text_input("🔍 Search Annotations")
-        
+
         selected_label = st.selectbox(
         "Filter by Label",
         ["All", "Positive", "Negative", "Neutral"]
@@ -260,3 +260,27 @@ if uploaded_file is not None:
         )
 
         st.pyplot(fig)
+
+        st.write("## 📥 Download Analytics Report")
+
+        analytics_df = pd.DataFrame({
+            "Metric": [
+                "Total",
+                "Positive",
+                "Negative",
+                "Neutral"
+            ],
+            "Count": [
+                len(result_df),
+                len(result_df[result_df["final_label"] == "Positive"]),
+                len(result_df[result_df["final_label"] == "Negative"]),
+                len(result_df[result_df["final_label"] == "Neutral"])
+            ]
+        })
+
+        st.download_button(
+            "Download Analytics Report",
+            analytics_df.to_csv(index=False),
+            "analytics_report.csv",
+            "text/csv"
+        )
