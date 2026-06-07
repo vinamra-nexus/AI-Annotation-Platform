@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 st.title("🧠 AI Data Annotation Tool - PRO MODE")
 
@@ -194,3 +195,13 @@ if uploaded_file is not None:
         st.write(f"✅ Positive: {positive}")
         st.write(f"❌ Negative: {negative}")
         st.write(f"➖ Neutral: {neutral}")
+
+        st.write("## 📊 Analytics Dashboard")
+
+        result_df = pd.DataFrame(st.session_state.labels)
+
+        st.metric("Total Annotations", len(result_df))
+
+        st.bar_chart(
+            result_df["final_label"].value_counts()
+        )
