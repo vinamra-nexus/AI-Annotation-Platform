@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 
 st.title("🧠 AI Data Annotation Tool - PRO MODE")
 
@@ -224,3 +225,15 @@ if uploaded_file is not None:
         st.bar_chart(
             result_df["final_label"].value_counts()
         )
+
+        counts = result_df["final_label"].value_counts()
+
+        fig, ax = plt.subplots()
+
+        ax.pie(
+            counts,
+            labels=counts.index,
+            autopct="%1.1f%%"
+        )
+
+        st.pyplot(fig)
