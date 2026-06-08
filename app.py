@@ -2,7 +2,24 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
+USERNAME = "admin"
+PASSWORD = "admin123"
+
 st.title("🧠 AI Data Annotation Tool - PRO MODE")
+
+st.sidebar.title("🔐 Login")
+
+username = st.sidebar.text_input("Username")
+password = st.sidebar.text_input(
+    "Password",
+    type="password"
+)
+
+if username != USERNAME or password != PASSWORD:
+    st.warning("Please login")
+    st.stop()
+
+st.sidebar.success(f"✅ Logged in as {username}")    
 
 uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
