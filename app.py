@@ -254,6 +254,31 @@ if uploaded_file is not None:
             f"{accuracy:.1f}%"
         )
 
+        accepted = 0
+        corrected = 0
+
+        for item in st.session_state.labels:
+
+            if item["ai_suggestion"] == item["final_label"]:
+                accepted += 1
+            else:
+                corrected += 1
+
+        correction_rate = (
+            corrected / len(st.session_state.labels) * 100
+        )
+
+        col1, col2, col3 = st.columns(3)
+
+        col1.metric("AI Accepted", accepted)
+
+        col2.metric("AI Corrected", corrected)
+
+        col3.metric(
+            "Correction Rate",
+            f"{correction_rate:.1f}%"
+        )
+
         st.write("## 📊 Analytics Dashboard")
 
         result_df = pd.DataFrame(st.session_state.labels)
