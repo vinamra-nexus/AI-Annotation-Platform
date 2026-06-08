@@ -348,3 +348,18 @@ if uploaded_file is not None:
             "analytics_report.csv",
             "text/csv"
         )
+
+        st.write("## 📋 Session Summary")
+
+        total = len(df)
+
+        annotated = len(st.session_state.labels)
+
+        remaining = total - annotated
+
+        most_common = result_df["final_label"].value_counts().idxmax()
+
+        st.write(f"📄 Total Records: {total}")
+        st.write(f"✅ Annotated: {annotated}")
+        st.write(f"⏳ Remaining: {remaining}")
+        st.write(f"🏆 Most Common Label: {most_common}")
