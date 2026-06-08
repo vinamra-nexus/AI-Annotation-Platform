@@ -84,6 +84,23 @@ if uploaded_file is not None:
     st.write("### 🤖 AI Suggested Label")
     st.success(ai_label)
 
+    if st.button("🤖 Auto Annotate All"):
+
+        st.session_state.labels = []
+
+        for _, row in df.iterrows():
+
+            auto_label = predict_label(row["text"])
+
+            st.session_state.labels.append({
+                "text": row["text"],
+                "ai_suggestion": auto_label,
+                "final_label": auto_label
+            })
+
+        st.success("All records annotated automatically!")
+        st.rerun()
+
     # manual selection
     label = st.selectbox("Choose Final Label", ["Positive", "Negative", "Neutral"])
 
@@ -253,9 +270,14 @@ if uploaded_file is not None:
         fig, ax = plt.subplots()
 
         ax.pie(
-            counts,
-            labels=counts.index,
-            autopct="%1.1f%%"
+        counts,
+        labels=counts.index,
+        autopct="%1.1f%%",
+        wedgeprops={
+            "edgecolor": "white",
+            "linewidth": 2,
+            "width": 0.5
+            }
         )
 
         st.pyplot(fig)
