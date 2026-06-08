@@ -236,6 +236,24 @@ if uploaded_file is not None:
         st.write(f"❌ Negative: {negative}")
         st.write(f"➖ Neutral: {neutral}")
 
+        matches = 0
+
+        for item in st.session_state.labels:
+
+            if item["ai_suggestion"] == item["final_label"]:
+                matches += 1
+
+        accuracy = (
+            matches / len(st.session_state.labels) * 100
+        )
+
+        st.write("## 🤖 AI Performance")
+
+        st.metric(
+            "AI Accuracy",
+            f"{accuracy:.1f}%"
+        )
+
         st.write("## 📊 Analytics Dashboard")
 
         result_df = pd.DataFrame(st.session_state.labels)
